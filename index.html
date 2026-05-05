@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Your Workplace Toxic? | Fearless Workplace</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#2F6E83;--teal-light:#E6F2F6;--teal-mid:#A8CDD7;
+  --burg:#8B2635;--burg-light:#F7E8EA;
+  --amber:#C47A15;--amber-light:#FDF3E0;
+  --green:#2E7450;--green-light:#E4F2EB;
+  --orange:#C46010;--orange-light:#FEF0E0;
+  --border:#D5DCE3;--bg:#F5F7FA;--text:#6B7A8D;--textl:#B0B8C4;
+}
+body{font-family:'Roboto',sans-serif;background:var(--bg);min-height:100vh;padding:2rem 1rem;font-size:16px;color:var(--text)}
+h1,h2,h3,.fw-logo,.sec-title,.dim-name,.i-dim,.gc-h3,.ap-h2,.dp-h2,.refs-h2{font-family:'Roboto Slab',serif}
+.wrap{max-width:700px;margin:0 auto}
+
+.header{background:var(--teal);border-radius:14px;padding:2rem 1.75rem 1.75rem;margin-bottom:1.5rem;text-align:center}
+.header-logo{display:block;width:200px;margin:0 auto 1.25rem;border-radius:6px}
+.header h1{font-size:26px;font-weight:600;color:#fff;margin-bottom:.6rem}
+.header p{font-size:15px;color:rgba(255,255,255,.65);line-height:1.65;max-width:500px;margin:0 auto;font-weight:300}
+
+.about-panel{background:white;border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.65rem;margin-bottom:1.1rem;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.ap-h2{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem}
+.about-panel p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:.6rem;font-weight:300}
+.about-panel p:last-child{margin-bottom:0}
+
+.disclaimer-panel{background:var(--burg-light);border:1px solid #D4A0A8;border-radius:12px;padding:1.35rem 1.65rem;margin-bottom:1.5rem}
+.dp-h2{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--burg);margin-bottom:.65rem}
+.disclaimer-panel p{font-size:14px;color:#6B3040;line-height:1.72;margin-bottom:.45rem;font-weight:300}
+.disclaimer-panel p:last-child{margin-bottom:0}
+
+.sources{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.35rem}
+.pill{font-size:12px;font-weight:500;color:var(--teal);background:var(--teal-light);border-radius:20px;padding:4px 12px;font-family:'Roboto',sans-serif}
+
+.prog-track{height:5px;background:var(--border);border-radius:3px;margin-bottom:1.5rem}
+.prog-fill{height:5px;background:linear-gradient(90deg,var(--teal),var(--burg));border-radius:3px;transition:width .35s ease;width:0%}
+
+.dimension{margin-bottom:1.1rem;background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.dim-head{background:var(--teal);padding:12px 20px;display:flex;align-items:center;gap:11px}
+.dim-icon{font-size:16px;width:32px;height:32px;background:rgba(255,255,255,.18);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dim-name{font-size:14px;font-weight:500;color:#fff;flex:1}
+.dim-src{font-size:10px;color:rgba(255,255,255,.42);font-family:'Roboto',sans-serif}
+
+.question{display:flex;align-items:flex-start;gap:13px;padding:14px 20px;border-bottom:1px solid var(--border)}
+.question:last-child{border-bottom:none}
+.qn{font-size:12px;color:#C0C8D2;min-width:22px;padding-top:2px;font-weight:500}
+.qt{flex:1;font-size:15px;color:var(--text);line-height:1.6;font-weight:300}
+.btns{display:flex;gap:7px;flex-shrink:0}
+.abtn{font-size:13px;font-weight:500;padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);cursor:pointer;background:white;color:#A0AABB;transition:all .15s;font-family:'Roboto',sans-serif}
+.abtn:hover{border-color:var(--teal);color:var(--teal)}
+.abtn.yes-on{background:var(--burg);border-color:var(--burg);color:#F8ECED}
+.abtn.no-on{background:var(--teal);border-color:var(--teal);color:#E0F0F5}
+
+.submit-wrap{text-align:center;margin-top:2rem}
+.sbtn{background:var(--burg);color:#F8ECED;border:none;border-radius:9px;padding:15px 52px;font-size:16px;font-weight:500;cursor:pointer;transition:opacity .2s;font-family:'Roboto Slab',serif}
+.sbtn:hover{opacity:.85}
+.sbtn:disabled{opacity:.25;cursor:not-allowed}
+.qcount{font-size:13px;color:var(--textl);margin-top:11px}
+.foot-legal{font-size:11px;color:var(--textl);text-align:center;margin-top:1.1rem;line-height:1.7;font-family:'Roboto',sans-serif}
+
+#rv{display:none}
+
+.score-banner{border-radius:14px;padding:2.25rem 1.75rem;text-align:center;margin-bottom:1.5rem;border:2px solid;opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.score-banner.visible{opacity:1;transform:translateY(0)}
+.score-banner.g{background:var(--green-light);border-color:var(--green)}
+.score-banner.a{background:var(--amber-light);border-color:var(--amber)}
+.score-banner.o{background:var(--orange-light);border-color:var(--orange)}
+.score-banner.r{background:var(--burg-light);border-color:var(--burg)}
+
+.s-num{font-family:'Roboto Slab',serif;font-size:72px;font-weight:700;line-height:1;opacity:0;transform:scale(.7);transition:opacity .5s ease .3s,transform .5s cubic-bezier(.34,1.56,.64,1) .3s}
+.s-num.visible{opacity:1;transform:scale(1)}
+.score-banner.g .s-num{color:var(--green)}
+.score-banner.a .s-num{color:var(--amber)}
+.score-banner.o .s-num{color:var(--orange)}
+.score-banner.r .s-num{color:var(--burg)}
+.s-denom{font-size:20px;color:var(--textl);font-family:'Roboto',sans-serif;font-weight:300}
+
+.s-tier{font-size:17px;font-weight:600;margin-top:12px;font-family:'Roboto Slab',serif;opacity:0;transition:opacity .4s ease .65s}
+.s-tier.visible{opacity:1}
+.score-banner.g .s-tier{color:var(--green)}
+.score-banner.a .s-tier{color:var(--amber)}
+.score-banner.o .s-tier{color:var(--orange)}
+.score-banner.r .s-tier{color:var(--burg)}
+
+.s-desc{font-size:15px;color:#7A8898;margin-top:10px;line-height:1.7;max-width:480px;margin-left:auto;margin-right:auto;font-weight:300;opacity:0;transition:opacity .4s ease .85s}
+.s-desc.visible{opacity:1}
+
+.sec-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--textl);margin:1.6rem 0 .85rem}
+
+.dim-bars{background:white;border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.5rem;margin-bottom:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.dbr{margin-bottom:14px}
+.dbr:last-child{margin-bottom:0}
+.dbr-lbl{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.dbr-lbl span:first-child{color:#7A8898;font-weight:500;font-family:'Roboto Slab',serif}
+.dbr-lbl span:last-child{color:var(--textl)}
+.btrack{height:9px;background:#EEF0F4;border-radius:5px}
+.bfill{height:9px;border-radius:5px;width:0%;transition:width .8s cubic-bezier(.4,0,.2,1)}
+
+.igrid{display:grid;gap:10px;margin-bottom:1.25rem}
+.icard{border-radius:10px;padding:16px 18px;border-left:4px solid}
+.icard.low{background:var(--green-light);border-color:var(--green)}
+.icard.mid{background:var(--amber-light);border-color:var(--amber)}
+.icard.high{background:var(--burg-light);border-color:var(--burg)}
+.i-dim{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.icard.low .i-dim{color:var(--green)}
+.icard.mid .i-dim{color:var(--amber)}
+.icard.high .i-dim{color:var(--burg)}
+.i-text{font-size:14px;line-height:1.7;color:#7A8898;font-weight:300}
+
+.gc{background:white;border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.65rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.gc-h3{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem}
+.gc p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:.65rem;font-weight:300}
+.gc p:last-child{margin-bottom:0}
+.gc ul{margin:.5rem 0 .65rem 1.1rem}
+.gc ul li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:.3rem;font-weight:300}
+.gc.mh{background:var(--teal-light);border-color:var(--teal-mid)}
+.gc.mh .gc-h3{color:var(--teal)}
+
+.cta-box{background:var(--teal);border-radius:12px;padding:1.75rem;text-align:center;margin-top:1.5rem}
+.cta-box p{font-size:15px;color:rgba(255,255,255,.72);line-height:1.7;margin-bottom:1.25rem;font-weight:300}
+.cta-btn{background:var(--burg);color:#F8ECED;border:none;border-radius:8px;padding:14px 32px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .2s;font-family:'Roboto Slab',serif}
+.cta-btn:hover{opacity:.88}
+.restart-btn{display:block;margin:1rem auto 0;font-size:13px;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:'Roboto',sans-serif}
+
+.refs{background:white;border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.65rem;margin-top:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.refs-h2{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--textl);margin-bottom:1.1rem}
+.ref-item{margin-bottom:.9rem;padding-bottom:.9rem;border-bottom:1px solid var(--border)}
+.ref-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.ref-item p{font-size:13px;color:#7A8898;line-height:1.7;font-weight:300}
+.ref-item p em{font-style:italic}
+
+@media(max-width:540px){
+  body{padding:1rem .75rem}
+  .header{padding:1.5rem 1.25rem 1.35rem}
+  .header h1{font-size:22px}
+  .header-logo{width:160px}
+  .dim-src{display:none}
+  .abtn{padding:5px 12px;font-size:12px}
+  .s-num{font-size:58px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="fv">
+    <div class="header">
+      <img class="header-logo" src="data:image/jpeg;base64,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" alt="Fearless Workplace">
+      <h1>Is Your Workplace Toxic?</h1>
+      <p>22 questions across six research-grounded dimensions. Answer based on what has been consistently true for the past 90 days.</p>
+    </div>
+
+    <div class="about-panel">
+      <div class="ap-h2">About This Assessment</div>
+      <p>This tool was developed by Fearless Workplace to help people evaluate their work environment across six dimensions identified in peer-reviewed organizational psychology research: power misuse and control, narrative manipulation, overt and covert hostility, social exclusion and isolation, values and moral conflict, and physical and psychological impact.</p>
+      <p>The framework draws on over three decades of workplace bullying, mobbing, and organizational harm research. It is designed to give you language for what you may already be experiencing and a clearer picture of where that experience sits relative to documented patterns of harm.</p>
+      <p>This assessment was developed by Kelly Abner, a credentialed counselor and organizational consultant with over 20 years of cross-industry experience, and founder of Fearless Workplace.</p>
+    </div>
+
+    <div class="disclaimer-panel">
+      <div class="dp-h2">Important Disclaimer</div>
+      <p>This assessment is an educational tool. It is not a clinical evaluation, a psychological diagnosis, or a legal determination of any kind. It does not establish or document a legal claim of harassment, discrimination, or hostile work environment as defined under applicable law.</p>
+      <p>Results are intended to support self-awareness and informed decision-making. They are not a substitute for guidance from a licensed mental health professional, an employment attorney, or an HR professional with knowledge of your specific situation and jurisdiction.</p>
+      <p>If you are experiencing a mental health crisis or feel you are in immediate danger, please contact the 988 Suicide and Crisis Lifeline by calling or texting 988, or contact your local emergency services.</p>
+    </div>
+
+    <div class="sources">
+      <span class="pill">Leymann (1990, 1996)</span>
+      <span class="pill">Einarsen et al. (2003)</span>
+      <span class="pill">Namie &amp; Namie (2011)</span>
+      <span class="pill">Sutton (2007)</span>
+      <span class="pill">Shay (1994) / Litz et al. (2009)</span>
+      <span class="pill">Lutgen-Sandvik (2006)</span>
+      <span class="pill">Williams (2007)</span>
+      <span class="pill">Simon (1996)</span>
+    </div>
+
+    <div class="prog-track"><div class="prog-fill" id="prog"></div></div>
+    <div id="qc"></div>
+
+    <div class="submit-wrap">
+      <button class="sbtn" id="sbtn" disabled onclick="showR()">See my results</button>
+      <div class="qcount" id="qct">0 of 22 answered</div>
+    </div>
+    <p class="foot-legal">&copy; 2026 Fearless Workplace, a dba of Vertical Edge Group &nbsp;|&nbsp; Do not distribute without permission.</p>
+  </div>
+
+  <div id="rv">
+    <div class="score-banner" id="sb">
+      <div class="s-num" id="sn"></div>
+      <div class="s-tier" id="st"></div>
+      <div class="s-desc" id="sd"></div>
+    </div>
+
+    <div class="sec-title">Score by dimension</div>
+    <div class="dim-bars" id="db"></div>
+
+    <div class="sec-title">What the patterns indicate</div>
+    <div class="igrid" id="ig"></div>
+
+    <div class="sec-title">What to do now</div>
+    <div id="guidance"></div>
+
+    <div class="cta-box">
+      <p>Whether you're navigating something now or want to be prepared, there's more at Fearless Workplace.</p>
+      <a class="cta-btn" href="http://www.fearlessworkplace.com" target="_blank">Visit Fearless Workplace &#8599;</a>
+      <button class="restart-btn" onclick="restart()">Retake the assessment</button>
+    </div>
+
+    <div class="refs">
+      <div class="refs-h2">Research References</div>
+      <div class="ref-item"><p>Einarsen, S., Hoel, H., Zapf, D., &amp; Cooper, C. L. (2003). <em>Bullying and Emotional Abuse in the Workplace: International Perspectives in Research and Practice.</em> London: Taylor &amp; Francis.</p></div>
+      <div class="ref-item"><p>Leymann, H. (1990). Mobbing and psychological terror at workplaces. <em>Violence and Victims, 5</em>(2), 119&#8211;126.</p></div>
+      <div class="ref-item"><p>Leymann, H. (1996). The content and development of mobbing at work. <em>European Journal of Work and Organizational Psychology, 5</em>(2), 165&#8211;184.</p></div>
+      <div class="ref-item"><p>Litz, B. T., Stein, N., Delaney, E., Lebowitz, L., Nash, W. P., Silva, C., &amp; Maguen, S. (2009). Moral injury and moral repair in war veterans: A preliminary model and intervention strategy. <em>Clinical Psychology Review, 29</em>(8), 695&#8211;706.</p></div>
+      <div class="ref-item"><p>Lutgen-Sandvik, P. (2006). Take this job and...: Quitting and other forms of resistance to workplace bullying. <em>Communication Monographs, 73</em>(4), 406&#8211;433.</p></div>
+      <div class="ref-item"><p>Namie, G., &amp; Namie, R. F. (2011). <em>The Bully-Free Workplace.</em> Hoboken, NJ: John Wiley &amp; Sons.</p></div>
+      <div class="ref-item"><p>Shay, J. (1994). <em>Achilles in Vietnam: Combat Trauma and the Undoing of Character.</em> New York: Atheneum.</p></div>
+      <div class="ref-item"><p>Simon, G. K. (1996). <em>In Sheep&#8217;s Clothing: Understanding and Dealing with Manipulative People.</em> Little Rock, AR: A.J. Christopher &amp; Co.</p></div>
+      <div class="ref-item"><p>Sutton, R. I. (2007). <em>The No Asshole Rule: Building a Civilized Workplace and Surviving One That Isn&#8217;t.</em> New York: Business Plus.</p></div>
+      <div class="ref-item"><p>Williams, K. D. (2007). Ostracism. <em>Annual Review of Psychology, 58,</em> 425&#8211;452.</p></div>
+    </div>
+
+    <p class="foot-legal" style="margin-top:1.25rem">&copy; 2026 Fearless Workplace, a dba of Vertical Edge Group &nbsp;|&nbsp; Do not distribute without permission.</p>
+  </div>
+
+</div>
+<script>
+const DIMS=[
+  {id:"power",icon:"⚖",label:"Power misuse and control",src:"Einarsen (2003); Lutgen-Sandvik (2006)",qs:[
+    "Your manager monitors or reviews your work at a level that goes beyond legitimate oversight.",
+    "You feel unsafe expressing disagreement or flagging concerns without fear of consequence.",
+    "Credit for your work or ideas regularly goes to someone above you.",
+    "Rules and accountability are applied differently depending on someone's relationship to leadership."
+  ]},
+  {id:"narrative",icon:"💬",label:"Narrative manipulation",src:"Lutgen-Sandvik (2006); Simon (1996)",qs:[
+    "Information you need to do your job is withheld, delayed, or delivered inconsistently.",
+    "You have been excluded from meetings or decisions that directly affect your work.",
+    "Your performance or reputation is being discussed in your absence in ways that feel inaccurate.",
+    "When you raise concerns, the conversation shifts to your tone or sensitivity rather than the issue."
+  ]},
+  {id:"hostility",icon:"⚡",label:"Overt and covert hostility",src:"Namie & Namie (2011); Sutton (2007)",qs:[
+    "You experience public criticism, condescension, or humiliation from a manager or peer.",
+    "You notice sarcasm, contempt, or dismissiveness directed at you that would not be acceptable if pointed outward.",
+    "You are regularly given impossible timelines, conflicting priorities, or unachievable expectations.",
+    "You have been blamed for outcomes that were outside your control or caused by others."
+  ]},
+  {id:"exclusion",icon:"🔒",label:"Social exclusion and isolation",src:"Leymann (1996); Williams (2007)",qs:[
+    "Relationships at work have cooled or gone silent in ways you did not initiate.",
+    "A group dynamic exists that excludes you from informal connection, information, or influence.",
+    "Colleagues who were previously friendly now limit contact after witnessing something."
+  ]},
+  {id:"moral",icon:"🧭",label:"Values and moral conflict",src:"Shay (1994); Litz et al. (2009)",qs:[
+    "You are regularly asked to do things that conflict with your values or professional standards.",
+    "You have watched poor behavior go unaddressed while people who named it faced consequences.",
+    "You feel a growing gap between the organization's stated values and how it actually operates."
+  ]},
+  {id:"body",icon:"🫀",label:"Physical and psychological impact",src:"Leymann (1990); Namie & Namie (2011)",qs:[
+    "You have noticed physical symptoms — sleep disruption, headaches, fatigue — that correlate with your work situation.",
+    "You feel emotionally depleted or numb in ways that were not true of you before this job.",
+    "You spend significant mental energy outside work hours processing or dreading what happens at work.",
+    "Your confidence or sense of capability has eroded since entering this environment."
+  ]}
+];
+
+const TIERS=[
+  {max:6,cls:"g",label:"Low environmental toxicity",desc:"Your workplace shows few consistent markers of toxicity across these dimensions. That matters. It is worth staying observant, as environments can shift without much warning."},
+  {max:13,cls:"a",label:"Emerging patterns — pay attention",desc:"You are experiencing real, repeated patterns. Research is consistent: these dynamics compound over time when unaddressed. This is the stage where awareness and early action matter most."},
+  {max:19,cls:"o",label:"Significant toxicity — protective action recommended",desc:"Multiple dimensions are elevated. At this level, sustained exposure carries documented risk to your health, your identity, and your professional standing. You need a strategy, not just coping."},
+  {max:22,cls:"r",label:"High-harm environment — serious risk to your wellbeing",desc:"Your results reflect significant markers across multiple dimensions. The research on environments like this is unambiguous about the cumulative harm they cause. Please prioritize your safety and wellbeing."}
+];
+
+const INS={
+  power:{
+    low:"Power dynamics appear relatively functional. Leadership operates with some degree of fairness and transparency.",
+    mid:"You are experiencing power imbalance. Watch how accountability and credit actually flow in your organization, not just what policy says.",
+    high:"Clear markers of power misuse are present. This is one of the most reliable predictors of long-term harm to targets. Begin documenting specific incidents with dates, times, and any witnesses."
+  },
+  narrative:{
+    low:"Information flows relatively openly and you appear accurately represented in your environment.",
+    mid:"There are signs that information is being managed or your story shaped without your input. This often escalates gradually before it becomes visible.",
+    high:"Narrative manipulation is active. Your reputation and access to information are being shaped by forces outside your control. Protect your documentation and be careful about what you share with whom."
+  },
+  hostility:{
+    low:"You are not experiencing significant overt or covert hostility in your current environment.",
+    mid:"Some hostile patterns are present. Even low-level chronic hostility compounds significantly over 6 to 12 months of sustained exposure.",
+    high:"You are operating in a hostile environment. Research by the Workplace Bullying Institute documents serious psychological and physical toll at this level. Name it accurately to yourself — that is where strategy starts."
+  },
+  exclusion:{
+    low:"Your social environment at work appears relatively stable and inclusive.",
+    mid:"Some patterns of exclusion are present. Social isolation is one of the earliest tactics Leymann identified in workplace mobbing — it limits your information, your allies, and your ability to respond.",
+    high:"Sustained exclusion is one of the most damaging dynamics in Leymann's mobbing research. It systematically erodes your support network and your sense of reality. Maintaining connections outside your immediate team is important."
+  },
+  moral:{
+    low:"Your values and the organization's behavior appear reasonably aligned.",
+    mid:"You are experiencing values conflict. Researchers Shay and Litz identify repeated exposure to this gap as the foundation of moral injury — a form of harm distinct from stress or burnout.",
+    high:"You show significant moral injury indicators. This is not weakness or oversensitivity. It is what happens when people with strong values operate in systems that repeatedly betray those values."
+  },
+  body:{
+    low:"Your body and mind appear to be holding up reasonably well in your current environment.",
+    mid:"You are showing early signs of cumulative stress. Your body is keeping score even when your mind is minimizing. These patterns tend to worsen before they improve if the source is not addressed.",
+    high:"Your body and psychology are carrying significant burden. The research is unambiguous: chronic toxic exposure causes measurable, lasting harm to physical and psychological health. What you are experiencing is real and deserves real support."
+  }
+};
+
+const GUIDANCE={
+  g:`<div class="gc"><div class="gc-h3">Maintain your awareness</div><p>Your environment shows low markers of toxicity right now. That is worth acknowledging. Workplaces change — leadership shifts, reorganizations, new personalities — and what feels stable can shift. Staying observant is not paranoia. It is what people who navigate organizations well do as a matter of habit.</p><p>Know your own baseline so you can recognize when things start to feel different.</p></div><div class="gc mh"><div class="gc-h3">Self-care and wellbeing</div><p>Even in functional environments, work is a significant source of stress. The habits that protect you — consistent sleep, movement, relationships outside of work, time that is genuinely off — matter most when things are going well, not just when they are not.</p><p>If you find yourself struggling despite a low score here, that is still worth attention. Speaking with a therapist or counselor is not reserved for crisis situations. Many people find it most useful precisely when things feel manageable but something still feels off.</p></div>`,
+
+  a:`<div class="gc"><div class="gc-h3">Name what you are seeing</div><p>Emerging patterns are easy to minimize, especially when each incident feels small on its own. The research on workplace bullying and mobbing is consistent: these dynamics rarely stay at the same level. They tend to escalate when unaddressed.</p><p>Start keeping a private, factual record. Date, time, what happened, who was present. Not as a legal document — as a way of staying grounded in what is actually occurring versus what you may later be told occurred.</p></div><div class="gc"><div class="gc-h3">Build your support structure now</div><p>The time to identify trusted colleagues, understand your HR processes, and know your options is before you need them urgently.</p><ul><li>Review your employee handbook for grievance and reporting procedures</li><li>Identify one or two colleagues you trust — and be selective about who that is</li><li>Know what your EAP (Employee Assistance Program) covers if your employer offers one</li></ul></div><div class="gc mh"><div class="gc-h3">Consider professional support</div><p>Emerging patterns create real stress, even when they have not yet reached crisis level. A therapist or counselor who works with occupational stress can help you process what is happening, maintain perspective, and develop strategies before things escalate.</p><p>If your employer offers an Employee Assistance Program, it typically includes free, confidential counseling sessions. Psychology Today's therapist finder at psychologytoday.com/us/therapists allows you to filter by specialty and insurance coverage.</p></div>`,
+
+  o:`<div class="gc"><div class="gc-h3">You need a strategy, not just coping</div><p>At this level, the environment is causing real harm. Managing your stress better is not the answer — understanding your situation clearly and making deliberate decisions about how to respond is. That means documenting consistently, understanding your options, identifying who your actual allies are, and making an honest assessment of whether change is possible in this environment or whether your path forward is through it and out.</p></div><div class="gc"><div class="gc-h3">Know your options and your rights</div><ul><li>If behavior meets the legal threshold for harassment or a hostile work environment, an employment attorney consultation is worth pursuing. Many offer free initial consultations.</li><li>The Workplace Bullying Institute at workplacebullying.org has free resources for targets navigating active situations.</li><li>The EEOC at eeoc.gov handles formal complaints involving protected characteristics.</li><li>Document in a personal file stored outside of work systems — not in your work email or on work devices.</li><li>Begin assessing your financial position and building options. Knowing you can leave changes how you navigate staying.</li></ul></div><div class="gc mh"><div class="gc-h3">Mental health support is not optional at this level</div><p>Significant toxic exposure causes measurable psychological harm — anxiety, sleep disruption, erosion of confidence, and in sustained cases, symptoms consistent with trauma. This is not weakness. It is a documented physiological response to sustained threat.</p><p>Working with a licensed therapist who has experience with workplace trauma, occupational stress, or moral injury is strongly recommended.</p><ul><li><strong>Psychology Today</strong> — psychologytoday.com/us/therapists</li><li><strong>Open Path Collective</strong> — openpathcollective.org (reduced-cost sessions)</li><li><strong>Your EAP</strong> — confidential and typically free through your employer</li></ul></div>`,
+
+  r:`<div class="gc"><div class="gc-h3">Your safety and wellbeing come first</div><p>At this level, the harm is real and cumulative. The research on high-harm workplace environments is not ambiguous: sustained exposure affects physical health, psychological stability, professional identity, and relationships outside of work. You are not imagining it and you are not overreacting.</p><p>The most important thing right now is making decisions that protect you — not decisions based on what you think you should be able to handle.</p></div><div class="gc"><div class="gc-h3">Practical steps to take now</div><ul><li>Document every incident in a private record stored outside of work systems — factual, dated, specific, with any witnesses noted</li><li>Consult an employment attorney if behavior may meet legal thresholds — many offer free initial consultations</li><li>Contact your state labor board if wage, hours, or retaliation issues are involved</li><li>Review your financial position and begin building options — having an exit path changes your leverage and your psychology</li><li>Limit what you share at work until you have a clear picture of who is and is not safe</li></ul></div><div class="gc mh"><div class="gc-h3">Please seek mental health support</div><p>High-harm workplace exposure produces symptoms consistent with trauma and moral injury. Headaches, sleep disruption, hypervigilance, emotional numbness, erosion of identity — these are not signs that you cannot handle stress. They are signs that you have been handling far too much for far too long.</p><p>Working with a licensed therapist is strongly recommended. Look for someone with experience in workplace trauma, PTSD, or occupational stress.</p><ul><li><strong>988 Suicide and Crisis Lifeline</strong> — call or text 988 if you are in crisis</li><li><strong>SAMHSA National Helpline</strong> — 1-800-662-4357, free, confidential, 24/7</li><li><strong>Psychology Today</strong> — psychologytoday.com/us/therapists</li><li><strong>Open Path Collective</strong> — openpathcollective.org (reduced-cost sessions)</li><li><strong>Your EAP</strong> — confidential and typically free through your employer</li></ul></div>`
+};
+
+const BCOL={low:"#2E7450",mid:"#C47A15",high:"#8B2635"};
+const answers={};
+let totalQ=0,qNum=1;
+
+function buildForm(){
+  const c=document.getElementById('qc');
+  DIMS.forEach(dim=>{
+    const sec=document.createElement('div');
+    sec.className='dimension';
+    let h=`<div class="dim-head"><div class="dim-icon">${dim.icon}</div><div class="dim-name">${dim.label}</div><div class="dim-src">${dim.src}</div></div>`;
+    dim.qs.forEach(qt=>{
+      const qid='q'+qNum;
+      h+=`<div class="question"><div class="qn">${qNum}</div><div class="qt">${qt}</div><div class="btns"><button class="abtn" id="y-${qid}" onclick="ans('${qid}',1,'${dim.id}')">Yes</button><button class="abtn" id="n-${qid}" onclick="ans('${qid}',0,'${dim.id}')">No</button></div></div>`;
+      qNum++;
+    });
+    totalQ=qNum-1;
+    sec.innerHTML=h;
+    c.appendChild(sec);
+  });
+}
+
+function ans(qid,val,dimId){
+  answers[qid]={val,dimId};
+  document.getElementById('y-'+qid).className='abtn'+(val===1?' yes-on':'');
+  document.getElementById('n-'+qid).className='abtn'+(val===0?' no-on':'');
+  const done=Object.keys(answers).length;
+  document.getElementById('prog').style.width=Math.round(done/totalQ*100)+'%';
+  document.getElementById('qct').textContent=done+' of '+totalQ+' answered';
+  document.getElementById('sbtn').disabled=done<totalQ;
+}
+
+function showR(){
+  let total=0;
+  const ds={},dm={};
+  DIMS.forEach(d=>{ds[d.id]=0;dm[d.id]=d.qs.length;});
+  Object.values(answers).forEach(a=>{total+=a.val;if(a.val)ds[a.dimId]++;});
+  const tier=TIERS.find(t=>total<=t.max)||TIERS[3];
+  document.getElementById('fv').style.display='none';
+  document.getElementById('rv').style.display='block';
+  window.scrollTo(0,0);
+
+  const sb=document.getElementById('sb');
+  sb.className='score-banner '+tier.cls;
+  document.getElementById('sn').innerHTML=total+'<span class="s-denom"> / '+totalQ+'</span>';
+  document.getElementById('st').textContent=tier.label;
+  document.getElementById('sd').textContent=tier.desc;
+
+  setTimeout(()=>{sb.classList.add('visible');},50);
+  setTimeout(()=>{document.getElementById('sn').classList.add('visible');},100);
+  setTimeout(()=>{document.getElementById('st').classList.add('visible');},200);
+  setTimeout(()=>{document.getElementById('sd').classList.add('visible');},300);
+
+  const db=document.getElementById('db');
+  db.innerHTML='';
+  DIMS.forEach(dim=>{
+    const pct=Math.round(ds[dim.id]/dm[dim.id]*100);
+    const lv=pct>=75?'high':pct>=50?'mid':'low';
+    db.innerHTML+=`<div class="dbr"><div class="dbr-lbl"><span>${dim.label}</span><span>${ds[dim.id]}/${dm[dim.id]}</span></div><div class="btrack"><div class="bfill" id="bf-${dim.id}" style="background:${BCOL[lv]}"></div></div></div>`;
+  });
+  setTimeout(()=>{
+    DIMS.forEach(dim=>{
+      const pct=Math.round(ds[dim.id]/dm[dim.id]*100);
+      const el=document.getElementById('bf-'+dim.id);
+      if(el) el.style.width=pct+'%';
+    });
+  },400);
+
+  const ig=document.getElementById('ig');
+  ig.innerHTML='';
+  DIMS.forEach(dim=>{
+    const pct=ds[dim.id]/dm[dim.id];
+    const lv=pct>=.75?'high':pct>=.5?'mid':'low';
+    ig.innerHTML+=`<div class="icard ${lv}"><div class="i-dim">${dim.label}</div><div class="i-text">${INS[dim.id][lv]}</div></div>`;
+  });
+
+  document.getElementById('guidance').innerHTML=GUIDANCE[tier.cls];
+}
+
+function restart(){
+  Object.keys(answers).forEach(k=>delete answers[k]);
+  document.getElementById('rv').style.display='none';
+  document.getElementById('fv').style.display='block';
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('qct').textContent='0 of 22 answered';
+  document.getElementById('sbtn').disabled=true;
+  window.scrollTo(0,0);
+  for(let i=1;i<=totalQ;i++){
+    const y=document.getElementById('y-q'+i),n=document.getElementById('n-q'+i);
+    if(y)y.className='abtn';if(n)n.className='abtn';
+  }
+}
+buildForm();
+</script>
+</body>
+</html>
